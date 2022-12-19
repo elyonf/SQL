@@ -1,0 +1,63 @@
+--Create table about famous singers
+
+CREATE TABLE famous_singers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER);
+    
+INSERT INTO famous_singers (fullname, age) VALUES ("Beyonce", "41");
+INSERT INTO famous_singers  (fullname, age) VALUES ("Taylor Swift", "33");
+INSERT INTO famous_singers  (fullname, age) VALUES ("Ed Sheeran", "31");
+INSERT INTO famous_singers  (fullname, age) VALUES ("Harry Styles", "28");
+INSERT INTO famous_singers  (fullname, age) VALUES ("Rihanna", "34");
+
+--Create table about title of songs by famous singers
+CREATE table songs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    title TEXT);
+    
+INSERT INTO songs (person_id, title) VALUES (1, "Halo");
+INSERT INTO songs (person_id, title) VALUES (1, "Single Ladies");
+INSERT INTO songs (person_id, title) VALUES (2, "Blank Space");
+INSERT INTO songs (person_id, title) VALUES (2, "22");
+INSERT INTO songs (person_id, title) VALUES (3, "Shape of You");
+INSERT INTO songs (person_id, title) VALUES (3, "Perfect");
+INSERT INTO songs (person_id, title) VALUES (3, "Photograph");
+INSERT INTO songs (person_id, title) VALUES (4, "Sign of the Times");
+INSERT INTO songs (person_id, title) VALUES (4, "Watermelon Sugar");
+INSERT INTO songs (person_id, title) VALUES (4, "As It Was");
+INSERT INTO songs (person_id, title) VALUES (5, "Umbrella");
+INSERT INTO songs (person_id, title) VALUES (5, "Diamonds");
+
+--Create table about where famous singers are from
+CREATE table hometown (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER, hometown TEXT);
+
+INSERT INTO hometown (person_id, hometown) VALUES (5, "St. Michael parish, Barbados");
+INSERT INTO hometown (person_id, hometown) VALUES (4,"Holmes Chapel, Cheshire, England");
+INSERT INTO hometown (person_id, hometown) VALUES (3, "Halifax, West Yorkshire, England");
+INSERT INTO hometown (person_id, hometown) VALUES (2,"West Reading, Pennsylvania, USA" );
+INSERT INTO hometown (person_id, hometown) VALUES (1, "Houston, Texas, USA");
+
+--show all columns from all three tables
+SELECT * FROM famous_singers;
+SELECT * FROM songs;
+SELECT * FROM hometown;
+
+--Display the name of famous singers and titles of their songs by joining two tables
+SELECT famous_singers.fullname, songs.title
+FROM famous_singers
+INNER JOIN songs
+ON famous_singers.id = songs.person_id;
+
+--Display the name of famous singers and their hometowns by joining two tables
+SELECT famous_singers.fullname, hometown.hometown
+FROM famous_singers
+LEFT JOIN hometown
+ON famous_singers.id = hometown.person_id;
+
+
+    
+
